@@ -55,7 +55,7 @@ public class Heap {
     }
 
     public static int KthLargestElement(int[] Heap, int K) {
-        int KthLargest = Heap[Heap.length - K];
+        int KthLargest = Heap[Heap.length - 4];
         return KthLargest;
     }
 
@@ -67,6 +67,8 @@ public class Heap {
         h.HeapSort(heap);
         System.out.println();
         h.display(heap);
+
+        System.out.println();
 
         System.out.println(KthLargestElement(heap,2));
     }
