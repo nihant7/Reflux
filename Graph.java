@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Graph {
@@ -17,8 +18,25 @@ public class Graph {
         g.adjList[dest].add(src);
     }
 
-    public void DFS (Graph g) {
-        Stack s = new Stack();
+    public void DFS (Graph g, int v) {
+
+        boolean[] visited = new boolean[V];
+
+
+        DFSUtil(visited, v);
+
+    }
+
+    public void DFSUtil(boolean[] visited, int v) {
+
+        visited[v] = true;
+
+        Iterator<Integer> i = adjList[v].iterator();
+        while(i.hasNext()) {
+            if(!visited[i.next()])
+            visited[i.next()] = true;
+        }
+
     }
 
     public void display(Graph g) {
