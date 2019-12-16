@@ -1,5 +1,5 @@
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Graph {
     int V;
@@ -13,9 +13,8 @@ public class Graph {
         }
     }
 
-    static void add(Graph g, int src, int dest) {
+    public void add(Graph g, int src, int dest) {
         g.adjList[src].add(dest);
-        g.adjList[dest].add(src);
     }
 
     public void DFS (Graph g, int v) {
@@ -39,6 +38,65 @@ public class Graph {
 
     }
 
+
+    // Stack Implementation
+    public void doDFS (int v) {
+        boolean[] visited = new boolean[V];
+        for(int i = 0; i < V; i++)
+            visited[i] = false;
+
+        java.util.Stack<Integer>  stack = new java.util.Stack<>();
+        stack.push(v);
+
+        while(!stack.isEmpty()) {
+
+            int popped = stack.pop();
+
+
+             visited[popped] = true;
+
+            System.out.print(popped + " ");
+            Iterator<Integer> neighbor = adjList[popped].iterator();
+            while(neighbor.hasNext()) {
+                int vert = neighbor.next();
+                if(!visited[vert]) {
+                    visited[vert] = true;
+                    stack.push(vert);
+                }
+              }
+            }
+        }
+
+
+        public void BFS(int v) {
+
+            boolean[] visited = new boolean[V];
+            for(int i = 0; i < V; i++)
+                visited[i] = false;
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(v);
+        visited[v] = true;
+
+
+
+            while(!queue.isEmpty()) {
+
+            int top = queue.remove();
+            System.out.print(top + " ");
+
+                Iterator<Integer> neighbor = adjList[top].listIterator();
+                while(neighbor.hasNext()) {
+                    int vert = neighbor.next();
+                    if(!visited[vert]) {
+                        visited[vert] = true;
+                        queue.add(vert);
+                    }
+                }
+            }
+    }
+
+
     public void display(Graph g) {
         for(int j = 0; j < g.V; j++) {
 
@@ -52,12 +110,21 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph(5);
-        add(g,1,2);
-        add(g,2,3);
-        add(g,3,4);
-        add(g,2,4);
+        Graph g = new Graph(4);
+        g.add(g,0, 1);
+        g.add(g,0, 2);
+        g.add(g,1, 2);
+        g.add(g,2, 0);
+        g.add(g,2, 3);
+        g.add(g,3, 3);
 
-        g.display(g);
+
+        //   g.display(g);
+
+        // DFS
+        g.doDFS(1);
+        System.out.println();
+        // BFS
+        g.BFS(2);
     }
 }
