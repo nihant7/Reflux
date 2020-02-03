@@ -13,48 +13,30 @@ public class Heap {
         array[b] = tmp;
     }
 
-    public static void MaxHeapify(int[] Heap, int MAX_SIZE, int i) {
-        int N = MAX_SIZE;
-        int left = 2*i + 1;
-        int right = left + 1;
-        int largest = i;
 
-            if(left < N && Heap[left] > Heap[largest])
-                largest = left;
 
-            if (right < N && Heap[right] > Heap[largest])
-                largest = right;
-
-            if(largest != i) {
-                swap(Heap, largest, i);
-                MaxHeapify(Heap, N, largest);
+    public void buildMaxHeap(int[] arr, int k) {
+        for(int i = 1; i < k; i++) {
+            if (arr[(i - 1 )/ 2] < arr[i]) {
+                int j = i;
+                while (arr[(j - 1)/2] < arr[j]) {
+                    swap(arr, j, (j - 1)/2);
+                    j = (j - 1) / 2;
+                }
             }
-
-
-    }
-
-    public void HeapSort(int[] Heap) {
-        int N = Heap.length;
-        for(int i = 0; i < N/2 ; i++) {
-            MaxHeapify(Heap, Heap.length, i);
-        }
-
-        for(int i = N-1; i >= 0; i--) {
-            int temp = Heap[0];
-            Heap[0] = Heap[i];
-            Heap[i] = temp;
-            MaxHeapify(Heap, i, 0);
-        }
-
-    }
-
-    public void iterHeapSort(int[] arr) {
-
-
-        while(arr[i-1]/2 < arr[i-1]) {
-            swap(arr, i, i -1);
         }
     }
+
+    public void HeapSort(int[] arr) {
+        buildMaxHeap(arr,arr.length);
+
+        for(int i = arr.length - 1; i >= 0; i--) {
+            swap(arr,i,0);
+            buildMaxHeap(arr, i);
+        }
+    }
+
+
 
     public void display(int[] Heap) {
         for(int j = 0; j < Heap.length; j++) {
@@ -71,9 +53,10 @@ public class Heap {
         Heap h = new Heap(10);
         int[] heap = {4,2,6,3,5,0,1};
         h.display(heap);
-        h.MaxHeapify(heap,10,0);
+     //   h.MaxHeapify(heap,10,0);
        // h.HeapSort(heap);
         System.out.println();
+        h.HeapSort(heap);
         h.display(heap);
 
         System.out.println();
