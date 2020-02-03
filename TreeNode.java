@@ -3,6 +3,7 @@ public class TreeNode {
     TreeNode left;
     TreeNode right;
     int data;
+    TreeNode next;
 
     TreeNode(int data) {
         this.data = data;

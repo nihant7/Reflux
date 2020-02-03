@@ -48,6 +48,14 @@ public class Heap {
 
     }
 
+    public void iterHeapSort(int[] arr) {
+
+
+        while(arr[i-1]/2 < arr[i-1]) {
+            swap(arr, i, i -1);
+        }
+    }
+
     public void display(int[] Heap) {
         for(int j = 0; j < Heap.length; j++) {
             System.out.print(Heap[j] + ", ");
@@ -63,13 +71,13 @@ public class Heap {
         Heap h = new Heap(10);
         int[] heap = {4,2,6,3,5,0,1};
         h.display(heap);
-     //   h.MaxHeapify(heap,10,0);
-        h.HeapSort(heap);
+        h.MaxHeapify(heap,10,0);
+       // h.HeapSort(heap);
         System.out.println();
         h.display(heap);
 
         System.out.println();
 
-        System.out.println(KthLargestElement(heap,2));
+      //  System.out.println(KthLargestElement(heap,2));
     }
 }

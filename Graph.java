@@ -109,22 +109,48 @@ public class Graph {
         }
     }
 
+
+    // LeetCode problem
+    public static int findJudge(int N, int[][] trust) {
+       // trust = new int[N][N];
+        int label = -1;
+        for(int i = 0; i < N; i++) {
+            for(int j = 0; j < trust.length; j++) {
+               // System.out.print("trust"+"["+i+"]"+"["+j+"]: " + trust[i][j]);
+                if(trust[i][j] == 1 && trust[i][j] != trust[j][i]) {
+                    label = j;
+                    break;
+                }
+                else { label = -1; }
+            }
+            return label;
+        }
+        return label;
+    }
+
+
     public static void main(String[] args) {
-        Graph g = new Graph(4);
-        g.add(g,0, 1);
-        g.add(g,0, 2);
-        g.add(g,1, 2);
-        g.add(g,2, 0);
-        g.add(g,2, 3);
-        g.add(g,3, 3);
-
-
-        //   g.display(g);
-
-        // DFS
-        g.doDFS(1);
-        System.out.println();
-        // BFS
-        g.BFS(2);
+//        Graph g = new Graph(4);
+//        g.add(g,0, 1);
+//        g.add(g,0, 2);
+//        g.add(g,1, 2);
+//        g.add(g,2, 0);
+//        g.add(g,2, 3);
+//        g.add(g,3, 3);
+//
+//
+//        //   g.display(g);
+//
+//        // DFS
+//        g.doDFS(1);
+//        System.out.println();
+//        // BFS
+//        g.BFS(2);
+        int[][] trust = {
+                         {0,0,1},
+                         {0,0,0},
+                         {0,0,0}
+                        };
+        System.out.print(findJudge(3, trust));
     }
 }
