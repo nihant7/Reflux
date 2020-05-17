@@ -1,3 +1,5 @@
+package Graphs;
+
 import java.util.Iterator;
 import java.util.*;
 
@@ -15,6 +17,10 @@ public class Graph {
 
     public void add(Graph g, int src, int dest) {
         g.adjList[src].add(dest);
+    }
+
+    public void add(int src, int dest) {
+
     }
 
     public void DFS (Graph g, int v) {
@@ -35,6 +41,7 @@ public class Graph {
             if(!visited[i.next()])
             visited[i.next()] = true;
         }
+
 
     }
 
@@ -130,7 +137,7 @@ public class Graph {
 
 
     public static void main(String[] args) {
-//        Graph g = new Graph(4);
+        Graph g = new Graph(4);
 //        g.add(g,0, 1);
 //        g.add(g,0, 2);
 //        g.add(g,1, 2);
@@ -146,6 +153,12 @@ public class Graph {
 //        System.out.println();
 //        // BFS
 //        g.BFS(2);
+
+        List<ArrayList<Integer>> adj = new ArrayList<>();
+        for(int i = 0; i < 4; i++ ) {
+            adj.add(new ArrayList<Integer>());
+        }
+
         int[][] trust = {
                          {0,0,1},
                          {0,0,0},

@@ -36,6 +36,26 @@ public class Heap {
         }
     }
 
+    public void MaxHeapify(int[] arr, int i) {
+        while( i < arr.length/2) {
+            int max = i;
+            int l = 2*i + 1;
+            int r = l + 1;
+            if(max < arr[l]) {
+                max = arr[l];
+            }
+
+            else if(max < arr[r]) {
+                max = arr[r];
+            }
+
+            if(max != i) {
+                swap(arr, max, i);
+            }
+        }
+
+    }
+
 
 
     public void display(int[] Heap) {
